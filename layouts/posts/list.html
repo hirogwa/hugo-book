@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ $paginator := .Paginate (where .Pages "Params.hidden" "ne" true) }}
+  {{ $paginator := .Paginate (where .Pages.ByTitle "Params.hidden" "ne" true) }}
   {{ range sort .Paginator.Pages }}
   <article>
     <h2>
@@ -9,7 +9,7 @@
       <strong>{{ .Date.Format "January 2, 2006" }}</strong>
     </h5>
     <p class="markdown">
-      {{- .Summary -}}
+      {{- .Description -}}
       {{ if .Truncated }}
         <a href="{{ .RelPermalink }}">...</a>
       {{ end }}
